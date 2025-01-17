@@ -1,12 +1,7 @@
 name: Build //src/... with nativelink
 on:
-  push:
   workflow_dispatch:
-  workflow_call:
-  workflow_run:
-    workflows: ["rebase upstream manual", "rebase upstream cron"]
-    types:
-      - completed
+
 jobs:
   linux-build:
     runs-on: large-ubuntu-22.04
