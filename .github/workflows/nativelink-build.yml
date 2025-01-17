@@ -1,12 +1,7 @@
 name: Build with nativelink
 on:
-  push:
   workflow_dispatch:
-  workflow_call:
-  workflow_run:
-    workflows: ["rebase upstream manual", "rebase upstream cron"]
-    types:
-      - completed
+
 jobs:
   linux-build:
     runs-on: large-ubuntu-22.04
@@ -26,7 +21,7 @@ jobs:
         build:nativelink --remote_cache=cas-mongo-ci-dev.dev-usw2.nativelink.net:443
         build:nativelink --remote_header=x-nativelink-api-key=$NATIVELINK_HEADER_RW_KEY
         # TODO(adams): paramterize over this value after reverting the execution properties changes.
-        build:nativelink --remote_default_exec_properties="container-image=docker://ubuntu22:latest"
+        build:nativelink --remote_default_exec_properties="container-image=ubuntu22:latest"
         build:nativelink --remote_instance_name=main
         build:nativelink --remote_download_minimal
         build:nativelink --remote_timeout=600
